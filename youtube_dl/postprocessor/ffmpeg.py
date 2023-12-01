@@ -6,6 +6,7 @@ import time
 import re
 import speech_recognition as sr
 from pydub import AudioSegment
+from youtube_dl import helper
 
 from .common import AudioConversionError, PostProcessor
 
