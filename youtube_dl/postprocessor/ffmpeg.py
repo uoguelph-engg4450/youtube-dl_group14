@@ -562,8 +562,8 @@ class FFmpegMergerPP(FFmpegPostProcessor):
         self.run_ffmpeg_multiple_files(info['__files_to_merge'], temp_filename, args)
         os.rename(encodeFilename(temp_filename), encodeFilename(filename))
         try:
-            #if (self.params.get('transcription', True)):
-            transcriber(filename)
+            if (self._downloader.params.get('transcription', True)):
+                transcriber(filename)
         except:
             print("Transcriber Failed")
         return info['__files_to_merge'], info
