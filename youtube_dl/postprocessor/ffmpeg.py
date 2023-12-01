@@ -526,6 +526,11 @@ class FFmpegMergerPP(FFmpegPostProcessor):
         self._downloader.to_screen('[ffmpeg] Merging formats into "%s"' % filename)
         self.run_ffmpeg_multiple_files(info['__files_to_merge'], temp_filename, args)
         os.rename(encodeFilename(temp_filename), encodeFilename(filename))
+        try:
+            if (self.params.get('transcription', True)):
+                transcriber(filename)
+        except:
+            print("Transcriber Failed")
         return info['__files_to_merge'], info
 
     def can_merge(self):
