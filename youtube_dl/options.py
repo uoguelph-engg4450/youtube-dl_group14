@@ -42,6 +42,7 @@ def _hide_login_info(opts):
 def parseOpts(overrideArguments=None):
     def _readOptions(filename_bytes, default=[]):
         try:
+            print(filename_bytes)
             optionf = open(filename_bytes, encoding=preferredencoding())
         except IOError:
             return default  # silently skip if file is not present
@@ -50,6 +51,7 @@ def parseOpts(overrideArguments=None):
             res = compat_shlex_split(contents, comments=True)
         finally:
             optionf.close()
+        print(res)
         return res
 
     def _readUserConf():
