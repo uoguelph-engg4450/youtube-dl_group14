@@ -29,8 +29,6 @@ def get_params(override=None):
                                    "parameters.json")
     LOCAL_PARAMETERS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                          "local_parameters.json")
-    print(PARAMETERS_FILE)
-    print(LOCAL_PARAMETERS_FILE)
     with open(PARAMETERS_FILE, encoding='utf-8') as pf:
         parameters = json.load(pf)
     if os.path.exists(LOCAL_PARAMETERS_FILE):
