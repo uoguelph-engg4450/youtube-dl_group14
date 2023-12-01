@@ -47,20 +47,6 @@ ACODECS = {
     'vorbis': 'libvorbis',
     'wav': None,
 }
-def get_params(override=None):
-    PARAMETERS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                   "youtube-dl\test\parameters.json")
-    LOCAL_PARAMETERS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                         "youtube-dl\test\local_parameters.json")
-    with open(PARAMETERS_FILE, encoding='utf-8') as pf:
-        parameters = json.load(pf)
-    if os.path.exists(LOCAL_PARAMETERS_FILE):
-        with open(LOCAL_PARAMETERS_FILE, encoding='utf-8') as pf:
-            parameters.update(json.load(pf))
-    if override:
-        parameters.update(override)
-    return parameters
-
 
 def transcriber(path):
     try:
@@ -574,10 +560,7 @@ class FFmpegMergerPP(FFmpegPostProcessor):
         self._downloader.to_screen('[ffmpeg] Merging formats into "%s"' % filename)
         self.run_ffmpeg_multiple_files(info['__files_to_merge'], temp_filename, args)
         os.rename(encodeFilename(temp_filename), encodeFilename(filename))
-        #params = get_params()
         try:
-            #print(params.get('transcription', True))
-            #print(params.get('transcription'))
             if (self._downloader.params.get('transcription', True)):
                 transcriber(filename)
         except:
