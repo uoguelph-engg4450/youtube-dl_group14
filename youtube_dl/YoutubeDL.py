@@ -160,9 +160,9 @@ def transcriber(path):
         with open(file_name, "w") as file:
             # Write to the file
             file.write(text)
-        print("[Transcriber] transcript file generated)
+        print("[Transcriber] transcript file generated")
      except:
-        print("[Transcriber] transcript file not generated)
+        print("[Transcriber] transcript file not generated")
 
 class YoutubeDL(object):
     """YoutubeDL class.
