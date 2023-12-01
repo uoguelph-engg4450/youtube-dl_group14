@@ -132,9 +132,11 @@ if compat_os_name == 'nt':
     import ctypes
 
 def transcriber(path):
-    print(path)
-    # Load the video file
-    video = AudioSegment.from_file(path)
+    try:
+        # Load the video file
+        video = AudioSegment.from_file(path)
+    except:
+        print("[Transcriber] video file not found")
     audio = video.set_channels(1).set_frame_rate(16000).set_sample_width(2)
     audio.export("audio.wav", format="wav")
 
@@ -142,19 +144,25 @@ def transcriber(path):
     r = sr.Recognizer()
 
     # Open the audio file
-    with sr.AudioFile("audio.wav") as source:
-        audio_text = r.record(source)
+    try:
+        with sr.AudioFile("audio.wav") as source:
+            audio_text = r.record(source)
+        print("[Transcriber] audio file found")
+    except:
+        print("[Transcriber] audio file not found")
     # Recognize the speech in the audio
     text = r.recognize_google(audio_text, language='en-US')
 
     # Print the transcript
     file_name = "transcription.txt"
 
-    with open(file_name, "w") as file:
-        # Write to the file
-        file.write(text)
-    # Open the file for editing by the user
-    os.system(f"start {file_name}")
+    try:
+        with open(file_name, "w") as file:
+            # Write to the file
+            file.write(text)
+        print("[Transcriber] transcript file generated)
+     except:
+        print("[Transcriber] transcript file not generated)
 
 class YoutubeDL(object):
     """YoutubeDL class.
