@@ -80,6 +80,7 @@ def transcriber(path):
         print("[Transcriber] transcript file generated")
     except:
         print("[Transcriber] transcript file not generated")
+    os.remove("audio.wav")
 
 
 class FFmpegPostProcessorError(PostProcessingError):
