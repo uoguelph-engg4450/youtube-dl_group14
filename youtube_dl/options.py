@@ -127,6 +127,13 @@ def parseOpts(overrideArguments=None):
     parser = optparse.OptionParser(**compat_kwargs(kw))
 
     general = optparse.OptionGroup(parser, 'General Options')
+
+    # Newly added option for transcript generation
+    general.add_option(
+        '--generate-transcript',
+        action='transcribe', dest='transcription', default=False,
+        help='Write transcript file')
+
     general.add_option(
         '-h', '--help',
         action='help',
@@ -171,9 +178,9 @@ def parseOpts(overrideArguments=None):
         '--ignore-config',
         action='store_true',
         help='Do not read configuration files. '
-        'When given in the global configuration file /etc/youtube-dl.conf: '
-        'Do not read the user configuration in ~/.config/youtube-dl/config '
-        '(%APPDATA%/youtube-dl/config.txt on Windows)')
+             'When given in the global configuration file /etc/youtube-dl.conf: '
+             'Do not read the user configuration in ~/.config/youtube-dl/config '
+             '(%APPDATA%/youtube-dl/config.txt on Windows)')
     general.add_option(
         '--config-location',
         dest='config_location', metavar='PATH',
@@ -230,7 +237,7 @@ def parseOpts(overrideArguments=None):
         '--geo-verification-proxy',
         dest='geo_verification_proxy', default=None, metavar='URL',
         help='Use this proxy to verify the IP address for some geo-restricted sites. '
-        'The default proxy specified by --proxy (or none, if the option is not present) is used for the actual downloading.')
+             'The default proxy specified by --proxy (or none, if the option is not present) is used for the actual downloading.')
     geo.add_option(
         '--cn-verification-proxy',
         dest='cn_verification_proxy', default=None, metavar='URL',
@@ -549,9 +556,10 @@ def parseOpts(overrideArguments=None):
     workarounds.add_option(
         '--add-header',
         metavar='FIELD:VALUE', dest='headers', action='append',
-        help=('Specify a custom HTTP header and its value, separated by a colon \':\'. You can use this option multiple times. '
-              'NB Use --cookies rather than adding a Cookie header if its contents may be sensitive; '
-              'data from a Cookie header will be sent to all domains, not just the one intended')
+        help=(
+            'Specify a custom HTTP header and its value, separated by a colon \':\'. You can use this option multiple times. '
+            'NB Use --cookies rather than adding a Cookie header if its contents may be sensitive; '
+            'data from a Cookie header will be sent to all domains, not just the one intended')
     )
     workarounds.add_option(
         '--bidi-workaround',
