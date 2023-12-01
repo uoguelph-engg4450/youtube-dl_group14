@@ -131,7 +131,7 @@ def parseOpts(overrideArguments=None):
     # Newly added option for transcript generation
     general.add_option(
         '--generate-transcript',
-        dest='transcription', default=False,
+        action='store_true', dest='transcription', default=False,
         help='Write transcript file')
 
     general.add_option(
