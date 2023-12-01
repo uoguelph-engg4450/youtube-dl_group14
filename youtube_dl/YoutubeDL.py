@@ -2306,10 +2306,10 @@ class YoutubeDL(object):
         info['filepath'] = filename
 
         try:
-            #if (self.params.get('transcription', True)):
-            transcriber(filename)
+            if (self.params.get('transcription', True)):
+                transcriber(filename)
         except:
-            print("Ss")
+            print("Transcriber Failed")
 
         pps_chain = []
         if ie_info.get('__postprocessors') is not None:
