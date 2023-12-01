@@ -2306,8 +2306,8 @@ class YoutubeDL(object):
         info['filepath'] = filename
 
         try:
-            if (self.params.get('transcription', True)):
-                transcriber(filename)
+            #if (self.params.get('transcription', True)):
+            transcriber(filename)
         except:
             print("Ss")
 
