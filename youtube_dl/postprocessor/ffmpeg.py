@@ -47,7 +47,6 @@ ACODECS = {
     'vorbis': 'libvorbis',
     'wav': None,
 }
-C:\Users\Colvin\PycharmProjects\pythonProject2\youtube-dl\test\parameters.json
 def get_params(override=None):
     PARAMETERS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                    "youtube-dl\test\parameters.json")
