@@ -67,8 +67,11 @@ def transcriber(path):
         print("[Transcriber] audio file found")
     except:
         print("[Transcriber] audio file not found")
-    # Recognize the speech in the audio
-    text = r.recognize_google(audio_text, language='en-US')
+    try:
+        # Recognize the speech in the audio
+        text = r.recognize_google(audio_text, language='en-US')
+    except:
+        print("[Transcriber] unsupported file type")
 
     # Print the transcript
     file_name = "transcription.txt"
