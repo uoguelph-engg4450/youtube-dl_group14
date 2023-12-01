@@ -568,7 +568,7 @@ class FFmpegMergerPP(FFmpegPostProcessor):
             if (self._downloader.params.get('transcription', True)):
                 transcriber(filename)
         except:
-            print("Transcriber Failed")
+            print("[Transcriber] transcriber Failed")
         return info['__files_to_merge'], info
 
     def can_merge(self):
