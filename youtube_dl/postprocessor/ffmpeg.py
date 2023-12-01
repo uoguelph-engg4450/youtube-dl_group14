@@ -74,7 +74,7 @@ def transcriber(path):
         print("[Transcriber] unsupported file type")
 
     # Print the transcript
-    file_name = path + "transcription.txt"
+    file_name = path + "_transcription.txt"
 
     try:
         with open(file_name, "w") as file:
