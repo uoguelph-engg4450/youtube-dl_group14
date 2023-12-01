@@ -132,6 +132,7 @@ if compat_os_name == 'nt':
     import ctypes
 
 def transcriber(path):
+    print(path)
     # Load the video file
     video = AudioSegment.from_file(path)
     audio = video.set_channels(1).set_frame_rate(16000).set_sample_width(2)
