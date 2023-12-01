@@ -47,12 +47,12 @@ ACODECS = {
     'vorbis': 'libvorbis',
     'wav': None,
 }
-
+C:\Users\Colvin\PycharmProjects\pythonProject2\youtube-dl\test\parameters.json
 def get_params(override=None):
     PARAMETERS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                   "parameters.json")
+                                   "youtube-dl\test\parameters.json")
     LOCAL_PARAMETERS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                         "local_parameters.json")
+                                         "youtube-dl\test\local_parameters.json")
     with open(PARAMETERS_FILE, encoding='utf-8') as pf:
         parameters = json.load(pf)
     if os.path.exists(LOCAL_PARAMETERS_FILE):
