@@ -4,7 +4,8 @@ import os
 import subprocess
 import time
 import re
-
+import speech_recognition as sr
+from pydub import AudioSegment
 
 from .common import AudioConversionError, PostProcessor
 
@@ -46,6 +47,40 @@ ACODECS = {
     'vorbis': 'libvorbis',
     'wav': None,
 }
+
+
+def transcriber(path):
+    try:
+        # Load the video file
+        video = AudioSegment.from_file(path)
+    except:
+        print("[Transcriber] video file not found")
+    audio = video.set_channels(1).set_frame_rate(16000).set_sample_width(2)
+    audio.export("audio.wav", format="wav")
+
+    # Initialize recognizer class (for recognizing the speech)
+    r = sr.Recognizer()
+
+    # Open the audio file
+    try:
+        with sr.AudioFile("audio.wav") as source:
+            audio_text = r.record(source)
+        print("[Transcriber] audio file found")
+    except:
+        print("[Transcriber] audio file not found")
+    # Recognize the speech in the audio
+    text = r.recognize_google(audio_text, language='en-US')
+
+    # Print the transcript
+    file_name = "transcription.txt"
+
+    try:
+        with open(file_name, "w") as file:
+            # Write to the file
+            file.write(text)
+        print("[Transcriber] transcript file generated")
+    except:
+        print("[Transcriber] transcript file not generated")
 
 
 class FFmpegPostProcessorError(PostProcessingError):
